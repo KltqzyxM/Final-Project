@@ -64,7 +64,7 @@ if licence_check =="yes":
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 3 days")
-                
+            
         if day == "7":
             pay = {
                 'nonce': nonce+1,
@@ -81,6 +81,13 @@ if licence_check =="yes":
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 7 days")
             
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+        GPIO.output(18, 1)
+        #Wait 1 Seconds
+        sleep(1)
+        
         late=input("Did you turn in late?, yes/no: ")
         if late == "yes":
             pay = {
@@ -114,7 +121,29 @@ if licence_check =="yes":
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You recieved deposit back")
             
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(18, GPIO.OUT)
+        GPIO.output(18, 0)
+        #Wait 1 Seconds
+        sleep(1)
+            
     if deposit =="no":
         print("Deposition failed")
+        
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.output(18, 0)
+    #Wait 1 Seconds
+    sleep(1)
+    
 if licence_check =="no":
     print("You don't have permission to drive")
+    
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)
+GPIO.output(18, 0)
+#Wait 1 Seconds
+sleep(1)
