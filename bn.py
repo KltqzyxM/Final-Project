@@ -1,7 +1,7 @@
 from web3 import Web3
 import json
 from time import sleep
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
 chainid=5777
