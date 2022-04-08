@@ -6,6 +6,6 @@ import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
-GPIO.output(18, 0)
+GPIO.output(18, 1)
 #Wait 1 Seconds
 sleep(1)
