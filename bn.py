@@ -3,12 +3,12 @@ import json
 from time import sleep
 #import RPi.GPIO as GPIO
 
-web_3=Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
 chainid=5777
 address=input("Input your address: ")
 private_key=input("Input your privatekey:0x")
-host="0xD0835Ae59Bff3F9520E945d97F49ac0c15665a75"
-private_key2="0x3461b3863f7cbde6ce7e367e92e945f69c6f31a78bef09171f30d8b712ca1689"
+host="0x325B899E9490f70af7A87b0d3494A4756eAeD13C"
+private_key2="0x09694260e3d87528ebbab2d1fd61d9d24cfd4727ffedb0f6a355b1c8335c27b7"
 licence_check = input("Have driving licence? ,yes/no: ")
 
 nonce=web_3.eth.getTransactionCount(address)
