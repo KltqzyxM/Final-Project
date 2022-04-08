@@ -126,7 +126,7 @@ if licence_check =="yes":
     if deposit =="no":
         print("Deposition failed")
         
-   lock(1)
+    lock(1)
     
 if licence_check =="no":
     print("You don't have permission to drive")
