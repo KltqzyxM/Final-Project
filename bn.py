@@ -10,6 +10,13 @@ private_key=input("Input your privatekey:0x")
 host="0x325B899E9490f70af7A87b0d3494A4756eAeD13C"
 private_key2="0x09694260e3d87528ebbab2d1fd61d9d24cfd4727ffedb0f6a355b1c8335c27b7"
 licence_check = input("Have driving licence? ,yes/no: ")
+def lock(x):
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.output(18, x)
+    #Wait 1 Seconds
+    sleep(1)
 
 nonce=web_3.eth.getTransactionCount(address)
 nonce2=web_3.eth.getTransactionCount(host)
@@ -81,12 +88,7 @@ if licence_check =="yes":
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 7 days")
             
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(18, GPIO.OUT)
-        GPIO.output(18, 1)
-        #Wait 1 Seconds
-        sleep(1)
+        lock(0)
         
         late=input("Did you turn in late?, yes/no: ")
         if late == "yes":
@@ -120,30 +122,13 @@ if licence_check =="yes":
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You recieved deposit back")
-            
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(18, GPIO.OUT)
-        GPIO.output(18, 0)
-        #Wait 1 Seconds
-        sleep(1)
-            
+                       
     if deposit =="no":
         print("Deposition failed")
         
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(18, GPIO.OUT)
-    GPIO.output(18, 0)
-    #Wait 1 Seconds
-    sleep(1)
+   lock(1)
     
 if licence_check =="no":
     print("You don't have permission to drive")
     
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT)
-GPIO.output(18, 0)
-#Wait 1 Seconds
-sleep(1)
+lock(1)
