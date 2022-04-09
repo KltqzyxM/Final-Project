@@ -7,18 +7,20 @@ def lock(x):
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(18, GPIO.OUT)
-    GPIO.output(18, x) #0=unlock,1=lock
+    GPIO.output(18, x)
     #Wait 1 Seconds
     sleep(1)
 lock(1)
+
 web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
 chainid=5777
-address=input("Input your address: ") #tenant address
-private_key=input("Input your privatekey:0x") #tenant privatekey
-host="0x325B899E9490f70af7A87b0d3494A4756eAeD13C" #renter address
-private_key2="0x09694260e3d87528ebbab2d1fd61d9d24cfd4727ffedb0f6a355b1c8335c27b7" #renter privatekey
+address=input("Input your address: ")
+private_key=input("Input your privatekey:0x")
+host="0xC46Da26eABD630659538653Cc4EC673a23568B1d"
+private_key2="0xcdb740175e43a862a415214da59487dd0ca75685c2edf70800e952b0e52b535e"
 licence_check = input("Have driving licence? ,yes/no: ")
 
+    
 nonce=web_3.eth.getTransactionCount(address)
 nonce2=web_3.eth.getTransactionCount(host)
 
@@ -32,10 +34,8 @@ if licence_check =="yes":
             'gas': 2000000,
             'gasPrice': web_3.toWei('50', 'gwei')
         }
-
         #sign the transaction
         signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
-
         #send transaction
         pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
         print("Deposition succeed")   
@@ -49,14 +49,11 @@ if licence_check =="yes":
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
-
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
-
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 1 day")
-
         if day == "3":
             pay = {
                 'nonce': nonce+1,
@@ -65,10 +62,8 @@ if licence_check =="yes":
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
-
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
-
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 3 days")
@@ -81,10 +76,8 @@ if licence_check =="yes":
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
-
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
-
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You rent 7 days")
@@ -100,10 +93,8 @@ if licence_check =="yes":
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
-
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
-
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You have to pay 5 ETH for turn in late")
@@ -115,15 +106,15 @@ if licence_check =="yes":
                 'value': web_3.toWei(30, 'ether'),
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
-            }
-        lock(1)         
+            }         
 
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key2)
-
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You recieved deposit back")
+            
+        lock(1)
                        
     if deposit =="no":
         print("Deposition failed")
