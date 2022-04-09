@@ -115,6 +115,7 @@ if licence_check =="yes":
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
+        lock(1)         
 
             #sign the transaction
             signed_pay = web_3.eth.account.sign_transaction(pay, private_key2)
