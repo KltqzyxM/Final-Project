@@ -3,20 +3,21 @@ import json
 from time import sleep
 import RPi.GPIO as GPIO
 
-web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
-chainid=5777
-address=input("Input your address: ")
-private_key=input("Input your privatekey:0x")
-host="0x325B899E9490f70af7A87b0d3494A4756eAeD13C"
-private_key2="0x09694260e3d87528ebbab2d1fd61d9d24cfd4727ffedb0f6a355b1c8335c27b7"
-licence_check = input("Have driving licence? ,yes/no: ")
 def lock(x):
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(18, GPIO.OUT)
-    GPIO.output(18, x)
+    GPIO.output(18, x) #0=unlock,1=lock
     #Wait 1 Seconds
     sleep(1)
+lock(1)
+web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
+chainid=5777
+address=input("Input your address: ") #tenant address
+private_key=input("Input your privatekey:0x") #tenant privatekey
+host="0x325B899E9490f70af7A87b0d3494A4756eAeD13C" #renter address
+private_key2="0x09694260e3d87528ebbab2d1fd61d9d24cfd4727ffedb0f6a355b1c8335c27b7" #renter privatekey
+licence_check = input("Have driving licence? ,yes/no: ")
 
 nonce=web_3.eth.getTransactionCount(address)
 nonce2=web_3.eth.getTransactionCount(host)
