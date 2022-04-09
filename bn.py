@@ -87,14 +87,14 @@ if licence_check =="yes":
         late=input("Did you turn in late?, yes/no: ")
         if late == "yes":
             pay = {
-                'nonce': nonce+2,
-                'to': host,
-                'value': web_3.toWei(5, 'ether'),
+                'nonce': nonce2,
+                'to': address,
+                'value': web_3.toWei(25, 'ether'),
                 'gas': 2000000,
                 'gasPrice': web_3.toWei('50', 'gwei')
             }
             #sign the transaction
-            signed_pay = web_3.eth.account.sign_transaction(pay, private_key)
+            signed_pay = web_3.eth.account.sign_transaction(pay, private_key2)
             #send transaction
             pay_hash = web_3.eth.sendRawTransaction(signed_pay.rawTransaction)
             print("You have to pay 5 ETH for turn in late")
