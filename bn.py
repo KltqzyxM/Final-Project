@@ -16,7 +16,7 @@ web_3=Web3(Web3.HTTPProvider("HTTP://192.168.1.104:7545"))
 chainid=5777
 address=input("Input User address: ")
 private_key="0xf40c4a06eb68542d60226bedd0e107031a87cb318cb4da84a04481458792eea8" #User Private Key (Do not use this private key on a public blockchain; use it for development purposes only!)
-host=input("Input Owner address")
+host=input("Input Owner address: ")
 private_key2="0x3747a2d1688dbb04dfd5cae7f9654115ff6fd96fb85e11bed1a6f57185f8eb38" #Owner Private Key (Do not use this private key on a public blockchain; use it for development purposes only!)
 licence_check = input("Have driving licence? ,yes/no: ")
 
